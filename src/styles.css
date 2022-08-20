@@ -1,0 +1,61 @@
+body {
+	background: linear-gradient(
+		110.5deg,
+		rgba(248, 196, 249, 0.66) 22.8%,
+		rgba(253, 122, 4, 0.15) 64.6%
+	);
+	font-size: calc(0.9rem + 0.3vw);
+	font-family: sans-serif;
+}
+
+h3 {
+	margin: auto;
+}
+h5 {
+	margin: auto;
+}
+
+.centerElement {
+	margin: 110px auto;
+	width: 45rem;
+}
+.iconInput {
+	border-width: 0;
+	border-radius: 15px;
+	font-size: 20px;
+}
+
+.card {
+	border-width: 0px;
+}
+
+.imgTemp {
+	max-width: inherit;
+}
+
+.select {
+	color: #f3a833;
+}
+
+.emojiWeather {
+	font-size: 80px;
+}
+.style {
+	background: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+}
+
+.maxTemp,
+.minTemp {
+	margin: auto;
+}
+.day {
+	margin: 12px;
+	text-shadow: 6px 9px 5px rgb(170, 170, 160);
+}
+.icon {
+	font-size: 45px;
+}
+
+.cap {
+	text-transform: capitalize;
+}

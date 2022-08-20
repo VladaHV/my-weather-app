@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vanilla Sandbox</title>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link href="src/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+        <div class="card p-1 shadow-lg rounded centerElement">
+        <div class="card" id="search-city">
+          <div class="row g-0">
+            <div class="col-2 m-auto">
+                <img src="img/picture.svg" 
+                class="imgTemp" 
+                alt="sun">   
+            </div>
+            <div class="col-8 m-auto">
+                  <div class="row text-center mt-2 select">
+                    <h2 class="card-title p-0">Weather vidget</h2>
+                  </div>
+                  <div class="row text-center m-auto">
+                      <button id="geo-button" class="col-1 iconInput p-0 m-auto">📍</button>
+                      <form class="p-0 col-11 m-auto" id="search-form">
+                      <input 
+                      class="col-10 text"
+                      id="user-city"
+                      list="datalistOptions"
+                      placeholder="Enter your city..."
+                      autocomplete= "off";
+                      autofocus = "on";
+                      />
+                      <datalist id="datalistOptions">
+                        <option value="Kyiv"> </option>
+                        <option value="New York"> </option>
+                        <option value="Seattle"> </option>
+                        <option value="Los Angeles"> </option>
+                        <option value="Chicago"> </option>
+                      </datalist>
+                      <input
+                      type = "submit"
+                      class="col-1 iconInput search p-0 m-auto"
+                      value = "🔍" />
+                      </form>
+
+                  </div>
+              </div>
+            <div class="col-2 m-auto">
+                <img src="img/CloudPic.svg" 
+                class="imgTemp" 
+                alt="sun">   
+            </div>
+          </div>
+        </div>
+        <div class="card my-3" id="current-weather">
+            <div class="row g-0 text-center mx-1 lh-sm">
+                <div class="col-4 m-auto border-end" id="data-box">
+                  <div id="date">        
+                  31.07.2022
+                  </div>
+                  <div id="day-time">
+                  Sun 12:05
+                  </div>
+                  <h2 class="select" id="city"></h2>
+                  <em class="cap" id="description"></em>
+                </div>
+                <div class="col-4 m-auto" id="temp-box">
+                        <div class="row g-1 m-2">
+                          <div class="col-6 m-auto text-end">
+                            <img id="weather-icon" src="https://openweathermap.org/img/wn/01d@2x.png" alt="weather icon">                   
+                          </div>
+                          <div class="col-6 m-auto">
+                            <div class="card-body p-0">
+                              <h1 id="temp" class="m-auto p-1 select">
+                                
+                                </h1>
+                                <button 
+                                id="cellcius"
+                                type="button" 
+                                class="btn btn-light p-0 m-auto">
+                                  C
+                                </button>
+                                <button 
+                                id="fahrenheit"
+                                type="button" 
+                                class="btn btn-light p-0 m-auto">
+                                  F
+                                </button>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+                <div class="col-4 m-auto">
+                  <div class="p-2">
+                                Max: 
+                                <span id="max-temp"></span>
+                                <br /> 
+                                Min: 
+                                <span id="min-temp"></span>
+                        <hr class="m-1" />
+                          Humidity:
+                              <b><span id="hum"></span>%</b>
+                          </br>
+                          Wind:
+                          <b><span id="wind-speed"></span> m/s </b>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="card mb-2" id="future-weather">
+            <div class="row text-center mx-1 lh-sm">
+                  <div class="col">
+                    <div class="card p-2 style">
+                          <div class="date"> 01.08.2022 </div>
+                          <div class="day"> Mon </div>
+                          <div class="maxTemp"> +18°C </div>
+                          <div class="icon">️☀️</div>
+                          <div class="minTemp"> +11°C </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                    <div class="card p-2 style">
+                          <div class="date"> 02.08.2022 </div>
+                          <div class="day"> Tue </div>
+                          <div class="maxTemp"> +15°C </div>
+                          <div class="icon">🌤</div>
+                          <div class="minTemp">+9°C</div>
+                      </div>
+                  </div>
+                  <div class="col">
+                    <div class="card p-2 style">
+                          <div class="date"> 03.08.2022 </div>
+                          <div class="day"> Wed </div>
+                          <div class="maxTemp"> +10°C </div>
+                          <div class="icon">⛈</div>
+                          <div class="minTemp"> +8°C </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                    <div class="card p-2 style">
+                          <div class="date"> 04.08.2022 </div>
+                          <div class="day"> Thu </div>
+                          <div class="maxTemp"> +18°C </div>
+                          <div class="icon">🌦</div>
+                          <div class="minTemp"> +15°C</div>
+                      </div>
+                  </div>
+                  <div class="col">
+                    <div class="card p-2 style">
+                          <div class="date"> 05.08.2022 </div>
+                          <div class="day"> Fri </div>
+                          <div class="maxTemp"> +28°C </div>
+                          <div class="icon">☀️</div>
+                          <div class="minTemp"> +22°C </div>
+                        </div>
+                  </div>
+                </div>
+        </div>
+        <div class="card-footer p-1 text-center text-muted small">
+          Coded by Vlada Honchar
+        </div>
+      </div>        
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
