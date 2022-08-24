@@ -50,11 +50,11 @@ function convertation(c) {
 }
 
 function convertCtoF() {
-  let arrayTemp = [`#temp`, `#max-temp`, `#min-temp`];
+  let arrayTemp = [tempCelGlobal, tempCelMaxGlobal, tempCelMinGlobal];
+  let arrayId = [`#temp`, `#max-temp`, `#min-temp`];
   for (let i = 0; i < arrayTemp.length; i++) {
-    let t = parseInt(document.querySelector(`${arrayTemp[i]}`).innerHTML, 10);
-    t = convertation(t);
-    document.querySelector(arrayTemp[i]).innerHTML = `${t}°F`;
+    let t = convertation(arrayTemp[i]);
+    document.querySelector(arrayId[i]).innerHTML = `${t}°F`;
   }
   /*	let temp = parseInt(document.querySelector("#temp").innerHTML, 10);
 	let tempMax = parseInt(document.querySelector("#max-temp").innerHTML, 10);
@@ -68,8 +68,11 @@ function convertCtoF() {
 //show weather from Openweathermap
 function showWeatherC(response) {
   let temp = Math.round(response.data.main.temp);
+  tempCelGlobal = temp;
   let tempMin = Math.round(response.data.main.temp_min);
+  tempCelMinGlobal = tempMin;
   let tempMax = Math.round(response.data.main.temp_max);
+  tempCelMaxGlobal = tempMax;
   let humidity = response.data.main.humidity;
   let wind = Math.round(response.data.wind.speed);
   let desc = response.data.weather[0].description;
@@ -138,6 +141,11 @@ function searchCity(event) {
     getWeatherC(city);
   }
 }
+
+//global variables
+let tempCelGlobal = null;
+let tempCelMaxGlobal = null;
+let tempCelMinGlobal = null;
 
 let buttonC = document.querySelector("#cellcius");
 buttonC.addEventListener("click", getC);

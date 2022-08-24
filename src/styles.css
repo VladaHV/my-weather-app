@@ -40,6 +40,7 @@ h5 {
 .emojiWeather {
   font-size: 80px;
 }
+
 .style {
   background: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
 }
@@ -58,4 +59,12 @@ h5 {
 
 .cap::first-letter {
   text-transform: capitalize;
+}
+
+.dis {
+  border: none;
+}
+
+.dis:hover {
+  cursor: default;
 }
