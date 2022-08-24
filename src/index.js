@@ -37,7 +37,7 @@ function convertTime(date) {
   let currentTime = `${hours}:${minutes}`;
   return currentTime;
 }
-//click Buttons
+
 function getC(event) {
   event.preventDefault();
   document.querySelector(`#fahrenheit`).classList.remove(`dis`);
@@ -153,20 +153,6 @@ function searchCity(event) {
   }
 }
 
-//global variables
-let tempCelGlobal = null;
-let tempCelMaxGlobal = null;
-let tempCelMinGlobal = null;
-
-let buttonC = document.querySelector("#cellcius");
-buttonC.addEventListener("click", getC);
-
-let buttonF = document.querySelector("#fahrenheit");
-buttonF.addEventListener("click", convertCtoF);
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", searchCity);
-
 //search weather by current position
 function getWeatherGeo(lat, lon) {
   let apiKey = `d2f29325392e89bb7db342ef1733f9b4`;
@@ -186,6 +172,20 @@ function currentPosition(position) {
 function getPosition() {
   navigator.geolocation.getCurrentPosition(currentPosition);
 }
+
+//global variables
+let tempCelGlobal = null;
+let tempCelMaxGlobal = null;
+let tempCelMinGlobal = null;
+
+let buttonC = document.querySelector("#cellcius");
+buttonC.addEventListener("click", getC);
+
+let buttonF = document.querySelector("#fahrenheit");
+buttonF.addEventListener("click", convertCtoF);
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", searchCity);
 
 let geoButtonClick = document.querySelector("#geo-button");
 geoButtonClick.addEventListener("click", getPosition);
