@@ -57,6 +57,10 @@ h5 {
   font-size: 45px;
 }
 
+.cap {
+  font-style: italic;
+}
+
 .cap::first-letter {
   text-transform: capitalize;
 }

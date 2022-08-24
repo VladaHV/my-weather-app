@@ -40,7 +40,13 @@ function convertTime(date) {
 //click Buttons
 function getC(event) {
   event.preventDefault();
-  let city = document.querySelector("#city").innerHTML;
+  document.querySelector(`#fahrenheit`).classList.remove(`dis`);
+  document.querySelector(`#fahrenheit`).classList.add(`btn-primary`);
+  document.querySelector(`#cellcius`).classList.remove(`btn-primary`);
+  document.querySelector(`#cellcius`).classList.add(`dis`);
+  document.querySelector("#temp").innerHTML = `${tempCelGlobal}°C`;
+  document.querySelector("#max-temp").innerHTML = `${tempCelMaxGlobal}°C`;
+  document.querySelector("#min-temp").innerHTML = `${tempCelMinGlobal}°C`;
 }
 
 function convertation(c) {
@@ -100,6 +106,7 @@ function showWeatherC(response) {
   document.getElementById(
     "weather-icon"
   ).src = `https://openweathermap.org/img/wn/${iconWeatherId}@2x.png`;
+  document.getElementById("weather-icon").alt = `${desc}`;
   document.querySelector("#temp").innerHTML = `${temp}°C`;
   document.querySelector("#max-temp").innerHTML = `${tempMax}°C`;
   document.querySelector("#min-temp").innerHTML = `${tempMin}°C`;
