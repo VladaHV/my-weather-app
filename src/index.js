@@ -56,6 +56,10 @@ function convertCtoF() {
     let t = convertation(arrayTemp[i]);
     document.querySelector(arrayId[i]).innerHTML = `${t}°F`;
   }
+  document.querySelector(`#fahrenheit`).classList.add(`dis`);
+  document.querySelector(`#fahrenheit`).classList.remove(`btn-primary`);
+  document.querySelector(`#cellcius`).classList.add(`btn-primary`);
+  document.querySelector(`#cellcius`).classList.remove(`dis`);
   /*	let temp = parseInt(document.querySelector("#temp").innerHTML, 10);
 	let tempMax = parseInt(document.querySelector("#max-temp").innerHTML, 10);
 	let tempMin = parseInt(document.querySelector("#min-temp").innerHTML, 10);
