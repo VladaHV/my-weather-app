@@ -153,6 +153,28 @@ function searchCity(event) {
   }
 }
 
+function weatherForecast() {
+  let forecastElement = document.querySelector(`#future-weather`);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
+  let forecastHTML = `<div class="row text-center mx-1 lh-sm">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
+            <div class="card p-2 style">
+                <div class="date"> 01.08.2022 </div>
+                <div class="day">${day}</div>
+                <div class="maxTemp"> +18°C </div>
+                <div class="icon">️☀️</div>
+                <div class="minTemp"> +11°C </div>
+            </div>
+        </div>
+		`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 //search weather by current position
 function getWeatherGeo(lat, lon) {
   let apiKey = `d2f29325392e89bb7db342ef1733f9b4`;
@@ -194,3 +216,4 @@ geoButtonClick.addEventListener("click", getPosition);
 //getPosition();
 
 getWeatherC(`Kryvyi Rih`);
+weatherForecast();
