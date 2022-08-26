@@ -218,6 +218,7 @@ function weatherForecast(response) {
                 <img 
 					src="https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
 					alt="${forecastDay.weather[0].description}"
+					class="m-auto"
 					width=64>
                 <div class="minTemp" id="min${index}">${Math.round(
           forecastDay.main.temp_min
@@ -231,7 +232,6 @@ function weatherForecast(response) {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(tempForecast);
 }
 
 //search weather by current position
