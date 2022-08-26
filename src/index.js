@@ -75,15 +75,23 @@ function convertCtoF() {
 	document.querySelector("#min-temp").innerHTML = `${tempMin}°F`;*/
 }
 
+//Onecall doest work!!!!!!!
 function getForecast(coordinates) {
   let lat = coordinates.lat;
   let lon = coordinates.lon;
-  let apiKey = `d2f29325392e89bb7db342ef1733f9b4`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?`;
+  let apiKey = `4607362530226bdeeb057b9cf8e4a1d1`;
+  // my another apiKey =
+  // 4607362530226bdeeb057b9cf8e4a1d1
+  // cc51a9af04c66250e3d2034bcced18b7
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?`; //if change onecall to forecast - its work!!!
   let units = `metric`;
   let fullUrl = `${apiUrl}lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
   console.log(fullUrl);
-  axios.get(fullUrl).then(weatherForecast);
+  debugger;
+  axios.get(fullUrl).then(function (response) {
+    console.log(response);
+  });
 }
 //show weather from Openweathermap
 function showWeatherC(response) {
@@ -165,8 +173,9 @@ function searchCity(event) {
   }
 }
 
-function weatherForecast(response) {
-  console.log(response);
+function weatherForecast() {
+  ////What is wrong???????
+  //console.log(response);
   let forecastElement = document.querySelector(`#future-weather`);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
   let forecastHTML = `<div class="row text-center mx-1 lh-sm">`;
