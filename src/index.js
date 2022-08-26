@@ -53,6 +53,12 @@ function getC(event) {
   document.querySelector("#temp").innerHTML = `${tempCelGlobal}°C`;
   document.querySelector("#max-temp").innerHTML = `${tempCelMaxGlobal}°C`;
   document.querySelector("#min-temp").innerHTML = `${tempCelMinGlobal}°C`;
+  tempForecast.max.forEach(function (max, index) {
+    document.querySelector(`#max${index}`).innerHTML = `${max}°C`;
+  });
+  tempForecast.min.forEach(function (min, index) {
+    document.querySelector(`#min${index}`).innerHTML = `${min}°C`;
+  });
 }
 
 function convertation(c) {
@@ -63,22 +69,35 @@ function convertation(c) {
 
 function convertCtoF() {
   let arrayTemp = [tempCelGlobal, tempCelMaxGlobal, tempCelMinGlobal];
+  arrayTemp = arrayTemp.concat(tempForecast.max).concat(tempForecast.min);
   let arrayId = [`#temp`, `#max-temp`, `#min-temp`];
-  for (let i = 0; i < arrayTemp.length; i++) {
-    let t = convertation(arrayTemp[i]);
-    document.querySelector(arrayId[i]).innerHTML = `${t}°F`;
-  }
+  let arrayIdForecastMax = [
+    `#max0`,
+    `#max1`,
+    `#max2`,
+    `#max3`,
+    `#max4`,
+    `#max5`,
+  ];
+  let arrayIdForexastMin = [
+    `#min0`,
+    `#min1`,
+    `#min2`,
+    `#min3`,
+    `#min4`,
+    `#min5`,
+  ];
+  arrayId = arrayId.concat(arrayIdForecastMax).concat(arrayIdForexastMin);
+
+  arrayTemp.forEach(function (temp, index) {
+    let t = convertation(temp);
+    document.querySelector(arrayId[index]).innerHTML = `${t}°F`;
+  });
+
   document.querySelector(`#fahrenheit`).classList.add(`dis`);
   document.querySelector(`#fahrenheit`).classList.remove(`btn-primary`);
   document.querySelector(`#cellcius`).classList.add(`btn-primary`);
   document.querySelector(`#cellcius`).classList.remove(`dis`);
-  /*	let temp = parseInt(document.querySelector("#temp").innerHTML, 10);
-	let tempMax = parseInt(document.querySelector("#max-temp").innerHTML, 10);
-	let tempMin = parseInt(document.querySelector("#min-temp").innerHTML, 10);
-	tempMax = convertation(tempMax);
-	tempMin = convertation(tempMin);
-	document.querySelector("#max-temp").innerHTML = `${tempMax}°F`;
-	document.querySelector("#min-temp").innerHTML = `${tempMin}°F`;*/
 }
 
 //Onecall doest work!!!!!!!
@@ -92,8 +111,9 @@ function getForecast(coordinates) {
 
   //let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?`;
   let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?`;
+
   let units = `metric`;
-  let fullUrl = `${apiUrl}lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  let fullUrl = `${apiUrl}lat=${lat}&lon=${lon}&exclude=daily&appid=${apiKey}&units=${units}`;
   axios.get(fullUrl).then(weatherForecast);
 }
 //show weather from Openweathermap
@@ -192,23 +212,26 @@ function weatherForecast(response) {
                 <div class="date">${convertDate(date)}</div>
 				<div class="time">${convertTime(date)}</div>
                 <div class="day">${convertDayShort(date)}</div>
-                <div class="maxTemp">${Math.round(
-                  forecastDay.main.temp_max
-                )}°C</div>
+                <div class="maxTemp" id="max${index}">${Math.round(
+          forecastDay.main.temp_max
+        )}°C</div>
                 <img 
 					src="https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
 					alt="${forecastDay.weather[0].description}"
 					width=64>
-                <div class="minTemp">${Math.round(
-                  forecastDay.main.temp_min
-                )}°C</div>
+                <div class="minTemp" id="min${index}">${Math.round(
+          forecastDay.main.temp_min
+        )}°C</div>
             </div>
         </div>
 		`;
+      tempForecast.max[index] = Math.round(forecastDay.main.temp_max);
+      tempForecast.min[index] = Math.round(forecastDay.main.temp_min);
     }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+  console.log(tempForecast);
 }
 
 //search weather by current position
@@ -235,6 +258,7 @@ function getPosition() {
 let tempCelGlobal = null;
 let tempCelMaxGlobal = null;
 let tempCelMinGlobal = null;
+let tempForecast = { max: [], min: [] };
 
 let buttonC = document.querySelector("#cellcius");
 buttonC.addEventListener("click", getC);
