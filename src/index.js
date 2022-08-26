@@ -25,6 +25,12 @@ function convertDay(date) {
   return currentDay;
 }
 
+function convertDayShort(date) {
+  let day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let currentDay = `${day[date.getDay()]}`;
+  return currentDay;
+}
+
 function convertTime(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
@@ -84,14 +90,11 @@ function getForecast(coordinates) {
   // 4607362530226bdeeb057b9cf8e4a1d1
   // cc51a9af04c66250e3d2034bcced18b7
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?`; //if change onecall to forecast - its work!!!
+  //let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?`;
   let units = `metric`;
   let fullUrl = `${apiUrl}lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-  console.log(fullUrl);
-  debugger;
-  axios.get(fullUrl).then(function (response) {
-    console.log(response);
-  });
+  axios.get(fullUrl).then(weatherForecast);
 }
 //show weather from Openweathermap
 function showWeatherC(response) {
@@ -173,25 +176,36 @@ function searchCity(event) {
   }
 }
 
-function weatherForecast() {
-  ////What is wrong???????
-  //console.log(response);
+function weatherForecast(response) {
+  let forecast = response.data.list;
   let forecastElement = document.querySelector(`#future-weather`);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu"];
   let forecastHTML = `<div class="row text-center mx-1 lh-sm">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col">
-            <div class="card p-2 style">
-                <div class="date"> 01.08.2022 </div>
-                <div class="day">${day}</div>
-                <div class="maxTemp"> +18°C </div>
-                <div class="icon">️☀️</div>
-                <div class="minTemp"> +11°C </div>
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      let timeStamp = forecastDay.dt * 1000;
+      let date = new Date(timeStamp);
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
+            <div class="card p-1 style">
+                <div class="date">${convertDate(date)}</div>
+				<div class="time">${convertTime(date)}</div>
+                <div class="day">${convertDayShort(date)}</div>
+                <div class="maxTemp">${Math.round(
+                  forecastDay.main.temp_max
+                )}°C</div>
+                <img 
+					src="https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+					alt="${forecastDay.weather[0].description}"
+					width=64>
+                <div class="minTemp">${Math.round(
+                  forecastDay.main.temp_min
+                )}°C</div>
             </div>
         </div>
 		`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -238,4 +252,3 @@ geoButtonClick.addEventListener("click", getPosition);
 //getPosition();
 
 getWeatherC(`Kryvyi Rih`);
-weatherForecast();
