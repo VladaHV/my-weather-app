@@ -15,95 +15,102 @@
 
   <body>
     <div class="container">
-        <div class="card p-1 shadow-lg rounded centerElement">
+      <div class="card p-1 shadow-lg rounded centerElement">
         <div class="card" id="search-city">
           <div class="row g-0">
             <div class="col-2 m-auto">
-                <img src="img/picture.svg" 
-                class="imgTemp" 
-                alt="sun">   
+              <img src="img/picture.svg" class="imgTemp" alt="sun" />
             </div>
             <div class="col-8 m-auto">
-                  <div class="row text-center mt-2 select">
-                    <h2 class="card-title p-0">Weather vidget</h2>
-                  </div>
-                  <div class="row text-center m-auto">
-                      <button id="geo-button" class="col-1 iconInput p-0 m-auto">📍</button>
-                      <form class="p-0 col-11 m-auto" id="search-form">
-                      <input 
-                      class="col-10 text"
-                      id="user-city"
-                      placeholder="Enter your city..."
-                      autocomplete= "off";
-                      autofocus = "on";
-                      />
-                      <input
-                      type = "submit"
-                      class="col-1 iconInput search p-0 m-auto"
-                      value = "🔍" />
-                      </form>
-
-                  </div>
+              <div class="row text-center mt-2 select">
+                <h2 class="card-title p-0">Weather vidget</h2>
               </div>
+              <div class="row text-center m-auto">
+                <button id="geo-button" class="col-1 iconInput p-0 m-auto">
+                  📍
+                </button>
+                <form class="p-0 col-11 m-auto" id="search-form">
+                  <input
+                    class="col-10 text"
+                    id="user-city"
+                    placeholder="Enter your city..."
+                    autocomplete="off"
+                    ;
+                    autofocus="on"
+                    ;
+                  />
+                  <input
+                    type="submit"
+                    class="col-1 iconInput search p-0 m-auto"
+                    value="🔍"
+                  />
+                </form>
+              </div>
+            </div>
             <div class="col-2 m-auto">
-                <img src="img/CloudPic.svg" 
-                class="imgTemp" 
-                alt="sun">   
+              <img src="img/CloudPic.svg" class="imgTemp" alt="sun" />
             </div>
           </div>
         </div>
         <div class="card my-4" id="current-weather">
-            <div class="row g-0 text-center mx-1 lh-sm">
-                <div class="col-4 m-auto border-end" id="data-box">
-                  <div id="date"></div>
-                  <div id="day"></div>
-                  <small><em>Last update:</em></small>
-                  <span id="time"></span>
-                  <h2 class="select m-1" id="city"></h2>
-                <div class="cap" id="description"></div>
+          <div class="row g-0 text-center mx-1 lh-sm">
+            <div class="col-4 m-auto border-end" id="data-box">
+              <div id="date"></div>
+              <div id="day"></div>
+              <small><em>Last update:</em></small>
+              <span id="time"></span>
+              <h2 class="select m-1" id="city"></h2>
+              <div class="cap" id="description"></div>
+            </div>
+            <div class="col-4 m-auto" id="temp-box">
+              <div class="row g-1 m-2">
+                <div class="col-6 m-auto text-end">
+                  <img id="weather-icon" src="" alt="" />
                 </div>
-                <div class="col-4 m-auto" id="temp-box">
-                        <div class="row g-1 m-2">
-                          <div class="col-6 m-auto text-end">
-                            <img id="weather-icon" src="" alt="">                   
-                          </div>
-                          <div class="col-6 m-auto">
-                            <div class="card-body p-0">
-                              <h1 id="temp" class="m-auto p-1 select"></h1>
-                                <small>Units:</small>
-                                <button 
-                                id="cellcius"
-                                class="btn p-1 m-auto dis">C</button>
-                                <button 
-                                id="fahrenheit"
-                                class="btn btn-primary p-1 m-auto">F</button>
-                            </div>
-                          </div>
-                        </div>
-                </div>
-                <div class="col-4 m-auto">
-                  <div class="p-2">
-                                Max: 
-                                <span id="max-temp"></span>
-                                <br /> 
-                                Min: 
-                                <span id="min-temp"></span>
-                        <hr class="m-1" />
-                          Humidity:
-                              <b><span id="hum"></span>%</b>
-                          </br>
-                          Wind:
-                          <b><span id="wind-speed"></span> m/s </b>
+                <div class="col-6 m-auto">
+                  <div class="card-body p-0">
+                    <h1 id="temp" class="m-auto p-1 select"></h1>
+                    <small>Units:</small>
+                    <button id="cellcius" class="btn p-1 m-auto dis">C</button>
+                    <button id="fahrenheit" class="btn btn-primary p-1 m-auto">
+                      F
+                    </button>
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="col-4 m-auto info">
+              <div class="p-2 small">
+                max:
+                <span id="max-temp" class="fw-bold"></span>
+                min:
+                <span id="min-temp" class="fw-bold"></span>
+                <hr class="m-1" />
+                humidity:
+                <b><span id="hum"></span>%</b>
+                <br />
+                wind:
+                <b><span id="wind-speed"></span> m/s </b>
+                <br />
+                pressure:
+                <b><span id="pressure"></span> hPa </b>
+                <hr class="m-1" />
+                sunrise:
+                <span id="sunrise" class="fw-bold"></span> UTC
+                <br />
+                sunset:
+                <span id="sunset" class="fw-bold"></span> UTC
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card mb-2 small" id="future-weather">
-        </div>
+        <div class="card mb-2 small" id="future-weather"></div>
         <div class="card-footer p-1 text-center small">
-          <a href="https://github.com/VladaHV/my-weather-app">Open-source code </a>by Vlada Honchar
+          <a href="https://github.com/VladaHV/my-weather-app"
+            >Open-source code </a
+          >by Vlada Honchar
         </div>
-      </div>        
+      </div>
     </div>
     <script src="src/index.js"></script>
   </body>

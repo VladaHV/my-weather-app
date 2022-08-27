@@ -166,46 +166,51 @@ function weatherForecast(response) {
 
 //show weather from Openweathermap
 function showWeatherC(response) {
-  if (response.data.cod == 200) {
-    let temp = Math.round(response.data.main.temp);
-    tempCelGlobal = temp;
-    let tempMin = Math.round(response.data.main.temp_min);
-    tempCelMinGlobal = tempMin;
-    let tempMax = Math.round(response.data.main.temp_max);
-    tempCelMaxGlobal = tempMax;
-    let humidity = response.data.main.humidity;
-    let wind = Math.round(response.data.wind.speed);
-    let desc = response.data.weather[0].description;
-    let timeStamp = response.data.dt * 1000;
-    let date = new Date(timeStamp);
-    let currentDate = document.querySelector("#date");
-    let curentDay = document.querySelector("#day");
-    let currentTime = document.querySelector("#time");
-    //refresh Date
-    currentDate.innerHTML = convertDate(date);
+  let temp = Math.round(response.data.main.temp);
+  tempCelGlobal = temp;
+  let tempMin = Math.round(response.data.main.temp_min);
+  tempCelMinGlobal = tempMin;
+  let tempMax = Math.round(response.data.main.temp_max);
+  tempCelMaxGlobal = tempMax;
+  let humidity = response.data.main.humidity;
+  let wind = Math.round(response.data.wind.speed);
+  let pressure = response.data.main.pressure;
+  let desc = response.data.weather[0].description;
+  let timeStamp = response.data.dt * 1000;
+  let date = new Date(timeStamp);
+  let currentDate = document.querySelector("#date");
+  let curentDay = document.querySelector("#day");
+  let currentTime = document.querySelector("#time");
+  let sunrise = convertTime(new Date(response.data.sys.sunrise * 1000));
+  let sunset = convertTime(new Date(response.data.sys.sunset * 1000));
 
-    //refresh Day
-    curentDay.innerHTML = convertDay(date);
+  //refresh Date
+  currentDate.innerHTML = convertDate(date);
 
-    //refreshTime
-    currentTime.innerHTML = convertTime(date);
+  //refresh Day
+  curentDay.innerHTML = convertDay(date);
 
-    document.querySelector("#city").innerHTML = response.data.name;
+  //refreshTime
+  currentTime.innerHTML = convertTime(date);
 
-    let iconWeatherId = response.data.weather[0].icon;
-    document.getElementById(
-      "weather-icon"
-    ).src = `https://openweathermap.org/img/wn/${iconWeatherId}@2x.png`;
-    document.getElementById("weather-icon").alt = `${desc}`;
-    document.querySelector("#temp").innerHTML = `${temp}°C`;
-    document.querySelector("#max-temp").innerHTML = `${tempMax}°C`;
-    document.querySelector("#min-temp").innerHTML = `${tempMin}°C`;
-    document.querySelector("#hum").innerHTML = humidity;
-    document.querySelector("#wind-speed").innerHTML = wind;
-    document.querySelector("#description").innerHTML = desc;
-    checkBtn();
-    getForecast(response.data.coord);
-  }
+  document.querySelector("#city").innerHTML = response.data.name;
+
+  let iconWeatherId = response.data.weather[0].icon;
+  document.getElementById(
+    "weather-icon"
+  ).src = `https://openweathermap.org/img/wn/${iconWeatherId}@2x.png`;
+  document.getElementById("weather-icon").alt = `${desc}`;
+  document.querySelector("#temp").innerHTML = `${temp}°C`;
+  document.querySelector("#max-temp").innerHTML = `${tempMax}°C`;
+  document.querySelector("#min-temp").innerHTML = `${tempMin}°C`;
+  document.querySelector("#hum").innerHTML = humidity;
+  document.querySelector("#wind-speed").innerHTML = wind;
+  document.querySelector("#pressure").innerHTML = pressure;
+  document.querySelector("#description").innerHTML = desc;
+  document.querySelector("#sunrise").innerHTML = sunrise;
+  document.querySelector("#sunset").innerHTML = sunset;
+  checkBtn();
+  getForecast(response.data.coord);
 }
 
 //get weather on Openweathermap

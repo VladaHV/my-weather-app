@@ -37,18 +37,10 @@ h5 {
   color: #f3a833;
 }
 
-.emojiWeather {
-  font-size: 80px;
-}
-
 .style {
   background: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
 }
 
-.maxTemp,
-.minTemp {
-  margin: auto;
-}
 .day {
   margin: 12px;
   text-shadow: 6px 9px 5px rgb(170, 170, 160);
@@ -71,4 +63,8 @@ h5 {
 
 .dis:hover {
   cursor: default;
+}
+
+.info {
+  color: #2c194c;
 }
