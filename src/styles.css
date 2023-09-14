@@ -1,9 +1,11 @@
 body {
-  background: linear-gradient(
+  /*background: linear-gradient(
     110.5deg,
     rgba(248, 196, 249, 0.66) 22.8%,
     rgba(253, 122, 4, 0.15) 64.6%
-  );
+  );*/
+  background-image: url("../img/bgimage.jpg");
+  background-size: auto;
   font-size: calc(0.9rem + 0.3vw);
   font-family: sans-serif;
 }
